@@ -14,17 +14,29 @@
          var nSlides = $(this).find(".child").length;
          var widthSlider = settings.width * nSlides;
          var _container = $(this).find(".container");
+         var _slides = $(this).find(".child")
          var _next =  $(this).find("#next");
          var _previous =  $(this).find("#previous");
+         var _paginator = $(this).find("#pagination-wrap ul");
 
         $(_container).css({width: widthSlider});
 
-        //Create a pagination
-        for(i=0; i<nSlides; i++){
-           var li = document.createElement('li');
-           $(li).data("index",i);
-           $(this).find("#pagination-wrap ul").append(li);
-        }
+
+        var src;
+        $.each(_slides, function( index, value ) {
+          src = $(this).data("src");
+          console.log(src);
+          $(this).css('background-image', 'url(' + src + ')');
+
+          //SetUp pagination
+          $(_paginator).append($('<li></li>').data("index",index));
+        });
+
+        // for(i=0; i<nSlides; i++){
+        //    var li = document.createElement('li');
+        //    $(li).data("index",i);
+        //    $(this).find("#pagination-wrap ul").append(li);
+        // }
 
         $('#pagination-wrap ul li').click( function(){
            var index = $(this).data("index");
@@ -42,7 +54,7 @@
            case "Right":  settings.index = ++settings.index==nSlides ?  0 : settings.index++; break;
            default: settings.index = (direction >= 0 && direction <= nSlides) ? direction : 0;  break;
          }
-          $(_container).css('-webkit-transform', 'translateX('+ (-(settings.width*settings.index)) +'px)');
+          $(_container).css('-webkit-transform', 'translateX('+ (-(settings.width*settings.index)) +'px)').css('-ms-transform', 'translateX('+ (-(settings.width*settings.index)) +'px)');
           pagination () ;
         }
 

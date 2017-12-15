@@ -30,15 +30,19 @@ body{
 	transition: all 0.3s cubic-bezier(1,.01,.32,1);	
 }
 
-.child{
-  background-color:#343436;
-  flex:1;
+.child {
+    background-color: #343436;
+    flex: 1;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
-#child1{  background: $color_1 }
-#child2{  background: $color_2}
-#child3{  background: $color_3}
-#child4{  background: $color_4}
+#child1{  background-color: $color_1 }
+#child2{  background-color: $color_2}
+#child3{  background-color: $color_3}
+#child4{  background-color: $color_4}
 .col-left, .col-right{
   flex-basis:40%;
   padding:20px;
